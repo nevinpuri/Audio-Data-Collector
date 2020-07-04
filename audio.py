@@ -1,5 +1,3 @@
-# Print out realtime audio volume as ascii bars
-
 import sounddevice as sd
 import numpy as np
 
@@ -23,9 +21,9 @@ for dataSample in audioData:
         avgData.append(len(dataSample))
 
 average = 0
-for filteredSample in avgData:
-    average += avgData[filteredSample]
+
+for k in range(len(avgData)):
+    average += avgData[k]
 
 print(average / len(avgData))
-    
     
