@@ -5,7 +5,8 @@ const { json } = require("express");
 
 router.get("/", async (req, res) => {
   try {
-    const allData = await AudioData.find({});
+    let today = new Date();
+    const allData = await AudioData.find({ date: today.getDate() });
     res.json(allData);
   } catch (err) {
     res.json({ message: err });
@@ -13,17 +14,18 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  let today = new Date();
   const audioData = new AudioData({
+    year: req.body.year,
+    month: req.body.month,
     date: req.body.date,
-    time: req.body.time,
+    hour: req.body.hour,
     audioData: req.body.audioData,
   });
   console.log(audioData);
   try {
     const savedAudioData = await audioData.save();
     console.log(audioData);
-    res.json(savedAudioData);
+    res.sendStatus(201);
   } catch (err) {
     res.json({ message: err });
   }

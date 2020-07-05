@@ -1,4 +1,5 @@
 import os
+import datetime
 from datetime import date, datetime
 import requests
 
@@ -34,21 +35,23 @@ for i in range(3):
     soundData.append(
         AudioData(readFileArray[0], readFileArray[1], readFileArray[2]))
 
-
+textFile.close()
 avgAudioData = 0
 for obj in soundData:
     avgAudioData += int(obj.audioData)
 
 avgAudioData = round((avgAudioData / 3), 2)
-currentDate = readFileArray[0]
-currentTime = readFileArray[1]
 
+# finalAudioData = {"date": currentDate, "time": currentTime,
+#                 "audioData": avgAudioData}
 
-finalAudioData = {"date": currentDate, "time": currentTime,
-                  "audioData": avgAudioData}
+now = datetime.now()
+
+finalAudioData = {"year": now.year,
+                  "month": now.month, "date": now.day, "hour": now.hour, "audioData": avgAudioData}
 
 sentAudioData = requests.post(
     "http://localhost:5000/audioAPI/audiodata", data=finalAudioData)
 
-textFile.close()
+
 print(sentAudioData)

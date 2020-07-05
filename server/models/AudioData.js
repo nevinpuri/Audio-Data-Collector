@@ -1,12 +1,20 @@
 const mongoose = require("mongoose");
 
 const AudioDataSchema = mongoose.Schema({
-  date: {
-    type: String,
+  year: {
+    type: Number,
     required: true,
   },
-  time: {
-    type: String,
+  month: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: Number,
+    required: true,
+  },
+  hour: {
+    type: Number,
     required: true,
   },
   audioData: {
