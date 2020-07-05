@@ -40,9 +40,9 @@ for obj in soundData:
     avgAudioData += int(obj.audioData)
 
 avgAudioData = round((avgAudioData / 3), 2)
-print(avgAudioData)
 currentDate = readFileArray[0]
 currentTime = readFileArray[1]
+
 
 finalAudioData = {"date": currentDate, "time": currentTime,
                   "audioData": avgAudioData}
@@ -50,4 +50,5 @@ finalAudioData = {"date": currentDate, "time": currentTime,
 sentAudioData = requests.post(
     "http://localhost:5000/audioAPI/audiodata", data=finalAudioData)
 
+textFile.close()
 print(sentAudioData)

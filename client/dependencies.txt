@@ -1,4 +1,13 @@
 sudo apt-get install libportaudio2
 sudo apt-get install ffmpeg
 
+sudo apt-get install libasound2-dev
+git clone -b alsapatch https://github.com/gglockner/portaudio
+cd portaudio
+./configure && make
+sudo ldconfig
+cd ..
+soundmeter
+
+
 soundmeter --collect --seconds 2 --log sound.log
