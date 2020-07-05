@@ -1,0 +1,4 @@
+sudo apt-get install libportaudio2
+sudo apt-get install ffmpeg
+
+soundmeter --collect --seconds 2 --log sound.log

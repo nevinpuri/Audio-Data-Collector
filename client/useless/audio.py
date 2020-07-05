@@ -6,11 +6,12 @@ avgData = []
 
 duration = 2
 
+
 def print_sound(indata, outdata, frames, time, status):
     volume_norm = np.linalg.norm(indata)*10
     audioData.append("A" * int(volume_norm))
- #   print ("A" * int(volume_norm))
-    
+    print("A" * int(volume_norm))
+
 
 with sd.Stream(callback=print_sound):
     sd.sleep(duration * 1000)
@@ -25,5 +26,5 @@ average = 0
 for k in range(len(avgData)):
     average += avgData[k]
 
-print(average / len(avgData))
-    
+if len(avgData) > 0:
+    print(average / len(avgData))
