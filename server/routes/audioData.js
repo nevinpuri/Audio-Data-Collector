@@ -13,6 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/allData", async (req, res) => {
+  try {
+    let allData = await AudioData.find({});
+    res.json(allData);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
+
 router.post("/", async (req, res) => {
   const audioData = new AudioData({
     year: req.body.year,
@@ -21,10 +30,9 @@ router.post("/", async (req, res) => {
     hour: req.body.hour,
     audioData: req.body.audioData,
   });
-  console.log(audioData);
   try {
     const savedAudioData = await audioData.save();
-    console.log(audioData);
+    console.log(savedAudioData);
     res.sendStatus(201);
   } catch (err) {
     res.json({ message: err });

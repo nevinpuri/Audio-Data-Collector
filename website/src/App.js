@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import axios from "axios";
+import AudioDataGraph from "./AudioDataGraph";
+import { v4 as uuidv4 } from "uuid";
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      axiosData: [],
+      data: [],
+    };
+  }
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  compareHours = (a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  };
+
+  componentDidMount = () => {
+    axios.get("http://localhost:5000/audioAPI/audiodata").then((res) => {
+      const { data } = res;
+      data.map((audioPoint) => {
+        this.setState({
+          axiosData: [
+            ...this.state.axiosData,
+            { name: audioPoint.hour, uv: audioPoint.audioData, key: uuidv4() },
+          ],
+        });
+      });
+      this.setState({ data: this.state.axiosData.sort(this.compareHours) });
+      console.log(this.state.axiosData);
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <h1>hello</h1>
+        <AudioDataGraph data={this.state.data} />
+      </div>
+    );
+  }
 }
 
 export default App;
