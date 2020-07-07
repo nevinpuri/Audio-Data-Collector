@@ -51,7 +51,7 @@ finalAudioData = {"year": now.year,
                   "month": now.month, "date": now.day, "hour": now.hour, "audioData": avgAudioData}
 
 sentAudioData = requests.post(
-    "http://localhost:5000/audioAPI/audiodata", data=finalAudioData)
+    "https://nevin.cc/audioAPI/audiodata", data=finalAudioData)
 
 
 print(sentAudioData)

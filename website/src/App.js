@@ -18,7 +18,7 @@ class App extends Component {
   };
 
   componentDidMount = () => {
-    axios.get("http://localhost:5000/audioAPI/audiodata").then((res) => {
+    axios.get("https://nevin.cc/audioAPI/audiodata").then((res) => {
       const { data } = res;
       data.map((audioPoint) => {
         this.setState({
@@ -36,8 +36,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>hello</h1>
+        <h1 className="text-center text text-primary">
+          Audio Level Data Collector
+        </h1>
+        <h3 className="text-center text text-secondary">By Nevin</h3>
         <AudioDataGraph data={this.state.data} />
+        <div className="footer">
+          <h6>
+            Need all of the audio data ever collected? Send a GET request to{" "}
+            <a href="https://nevin.cc/audioAPI/audiodata/allData">
+              https://nevin.cc/audioAPI/audiodata/allData
+            </a>
+          </h6>
+        </div>
       </div>
     );
   }

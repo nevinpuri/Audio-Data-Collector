@@ -38,7 +38,6 @@ class AudioDataGraph extends Component {
   render() {
     return (
       <div>
-        <h1>fddgbdfg</h1>
         <ResponsiveContainer width="100%" aspect={5}>
           <LineChart
             width={800}

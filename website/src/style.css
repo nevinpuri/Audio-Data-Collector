@@ -5,3 +5,11 @@
 .audio-data-text-container {
   text-align: center;
 }
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
